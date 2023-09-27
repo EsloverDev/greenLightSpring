@@ -1,9 +1,15 @@
 package co.edu.sena.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,14 +26,56 @@ public class PerfilController {
 	@Autowired
 	PerfilService perfilService;
 	
+	/*@GetMapping("/{id}")
+	public Optional<Perfil> buscarPorId(@PathVariable Integer id) {
+		return perfilService.findById(id);
+	}*/
+	
+	@GetMapping("/{email}")
+	public Optional<Perfil> buscarPorEmail(@PathVariable String email) {
+		return perfilService.findByEmail(email);
+	}
+	
+	@GetMapping("/listar")
+	public List<Perfil> listarTodos(){
+		return perfilService.findAll();
+	}
+	
 	@PostMapping
 	public Perfil guardar(@RequestBody Perfil p) {
 		return perfilService.save(p);
 	}
 	
-	@PostMapping("/login")
-	public ResponseEntity<String> loguin(@RequestBody Perfil perfil) {
-		String mensaje = perfilService.login(perfil.getUsername(), perfil.getPassword());
-		return ResponseEntity.ok(mensaje);
+	/*@DeleteMapping("/{id}")
+	public void eliminar(@PathVariable Integer id) {
+		perfilService.deleteById(id);
+	}*/
+	
+	@DeleteMapping("/{email}")
+	public void eliminarPorEmail(@PathVariable String email) {
+	    Optional<Perfil> perfilOptional = perfilService.findByEmail(email);
+	    if (perfilOptional.isPresent()) {
+	        Perfil perfil = perfilOptional.get();
+	        perfilService.deleteById(perfil.getId());
+	    }
+	}
+
+	
+	@PutMapping("/actualizar/{email}")
+	public Perfil actualizar(@RequestBody Perfil p, @PathVariable String email) {
+		Optional<Perfil> perfilOptional = perfilService.findByEmail(email);
+		if (perfilOptional.isPresent()) {
+			Perfil pEnBD = perfilOptional.get();
+			pEnBD.setNombre(p.getNombre());
+			pEnBD.setPassword(p.getPassword());
+			pEnBD.setEmail(p.getEmail());
+			pEnBD.setTelefono(p.getTelefono());
+			pEnBD.setPais(p.getPais());
+			pEnBD.setCiudad(p.getCiudad());
+			pEnBD.setLocalidad(p.getLocalidad());
+			pEnBD.setDocumento(p.getDocumento());
+			return perfilService.save(pEnBD);
+		}
+		return null;
 	}
 }
