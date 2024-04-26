@@ -40,5 +40,10 @@ public class PerfilServiceImpl implements PerfilService {
 		return perfilRepository.findByEmail(email);
 	}
 
+	@Override
+	public Perfil update(Perfil p) {
+		return perfilRepository.save(p);
+	}
+
 	
 }

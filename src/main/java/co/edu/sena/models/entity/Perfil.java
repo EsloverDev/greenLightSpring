@@ -2,6 +2,7 @@ package co.edu.sena.models.entity;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.BooleanSupplier;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -69,6 +70,22 @@ public class Perfil {
 		this.documento = documento;
 		this.listaProveedores = listaProveedores;
 		this.listaRecolectores = listaRecolectores;
+	}
+	
+	
+
+	public Perfil(int id, String nombre, String password, String email, String telefono, String pais, String ciudad,
+			String localidad, String documento) {
+		
+		this.id = id;
+		this.nombre = nombre;
+		this.password = password;
+		this.email = email;
+		this.telefono = telefono;
+		this.pais = pais;
+		this.ciudad = ciudad;
+		this.localidad = localidad;
+		this.documento = documento;
 	}
 
 	public int getId() {
@@ -166,5 +183,6 @@ public class Perfil {
 				+ documento + ", listaProveedores=" + listaProveedores + ", listaRecolectores=" + listaRecolectores
 				+ "]";
 	}
+
 
 }

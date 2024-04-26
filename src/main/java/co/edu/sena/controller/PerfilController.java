@@ -74,7 +74,7 @@ public class PerfilController {
 			pEnBD.setCiudad(p.getCiudad());
 			pEnBD.setLocalidad(p.getLocalidad());
 			pEnBD.setDocumento(p.getDocumento());
-			return perfilService.save(pEnBD);
+			return perfilService.update(pEnBD);
 		}
 		return null;
 	}
