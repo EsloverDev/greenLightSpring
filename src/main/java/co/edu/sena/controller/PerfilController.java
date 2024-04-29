@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.http.ResponseEntity;
 import co.edu.sena.models.entity.Perfil;
 import co.edu.sena.models.service.PerfilService;
 
@@ -29,12 +29,13 @@ public class PerfilController {
 	/*@GetMapping("/{id}")
 	public Optional<Perfil> buscarPorId(@PathVariable Integer id) {
 		return perfilService.findById(id);
-	}*/
+	}
 	
 	@GetMapping("/{email}")
 	public Optional<Perfil> buscarPorEmail(@PathVariable String email) {
 		return perfilService.findByEmail(email);
 	}
+	*/
 	
 	@GetMapping("/listar")
 	public List<Perfil> listarTodos(){
@@ -49,7 +50,7 @@ public class PerfilController {
 	/*@DeleteMapping("/{id}")
 	public void eliminar(@PathVariable Integer id) {
 		perfilService.deleteById(id);
-	}*/
+	}
 	
 	@DeleteMapping("/{email}")
 	public void eliminarPorEmail(@PathVariable String email) {
@@ -78,4 +79,12 @@ public class PerfilController {
 		}
 		return null;
 	}
+	*/
+	
+	@PostMapping("/login")
+	public ResponseEntity<String> iniciarSesion(@RequestBody Perfil perfil) {
+		String mensaje = perfilService.login(perfil.getEmail(), perfil.getPassword());
+		return ResponseEntity.ok(mensaje);
+	}
+
 }
