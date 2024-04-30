@@ -26,16 +26,16 @@ public class PerfilController {
 	@Autowired
 	PerfilService perfilService;
 	
-	/*@GetMapping("/{id}")
+	@GetMapping("/{id}")
 	public Optional<Perfil> buscarPorId(@PathVariable Integer id) {
 		return perfilService.findById(id);
 	}
 	
-	@GetMapping("/{email}")
+	@GetMapping("/email/{email}")
 	public Optional<Perfil> buscarPorEmail(@PathVariable String email) {
-		return perfilService.findByEmail(email);
+		return perfilService.encontrarCorreo(email);
 	}
-	*/
+	
 	
 	@GetMapping("/listar")
 	public List<Perfil> listarTodos(){
@@ -47,14 +47,14 @@ public class PerfilController {
 		return perfilService.save(p);
 	}
 	
-	/*@DeleteMapping("/{id}")
+	@DeleteMapping("/{id}")
 	public void eliminar(@PathVariable Integer id) {
 		perfilService.deleteById(id);
 	}
 	
-	@DeleteMapping("/{email}")
+	@DeleteMapping("/email/{email}")
 	public void eliminarPorEmail(@PathVariable String email) {
-	    Optional<Perfil> perfilOptional = perfilService.findByEmail(email);
+	    Optional<Perfil> perfilOptional = perfilService.encontrarCorreo(email);
 	    if (perfilOptional.isPresent()) {
 	        Perfil perfil = perfilOptional.get();
 	        perfilService.deleteById(perfil.getId());
@@ -64,7 +64,7 @@ public class PerfilController {
 	
 	@PutMapping("/actualizar/{email}")
 	public Perfil actualizar(@RequestBody Perfil p, @PathVariable String email) {
-		Optional<Perfil> perfilOptional = perfilService.findByEmail(email);
+		Optional<Perfil> perfilOptional = perfilService.encontrarCorreo(email);
 		if (perfilOptional.isPresent()) {
 			Perfil pEnBD = perfilOptional.get();
 			pEnBD.setNombre(p.getNombre());
@@ -79,7 +79,7 @@ public class PerfilController {
 		}
 		return null;
 	}
-	*/
+	
 	
 	@PostMapping("/login")
 	public ResponseEntity<String> iniciarSesion(@RequestBody Perfil perfil) {

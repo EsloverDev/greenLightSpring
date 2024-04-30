@@ -36,11 +36,11 @@ public class PerfilServiceImpl implements PerfilService {
 		perfilRepository.deleteById(id);
 	}
 
-	/*@Override
-	public Optional<Perfil> findByEmail(String email) {
-		return perfilRepository.findByEmail(email);
+	@Override
+	public Optional<Perfil> encontrarCorreo(String email) {
+		return perfilRepository.encontrarCorreo(email);
 	}
-	*/
+	
 	@Override
 	public Perfil update(Perfil p) {
 		return perfilRepository.save(p);

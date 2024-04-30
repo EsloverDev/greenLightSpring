@@ -11,7 +11,7 @@ public interface PerfilService {
 	public List<Perfil> findAll();
 	public Perfil save(Perfil p);
 	public void deleteById(Integer id);
-	/*public Optional<Perfil> findByEmail(String email);*/
+	public Optional<Perfil> encontrarCorreo(String email);
 	public Perfil update(Perfil p);
 	public String login(String perfil, String ctr);
 }

@@ -13,8 +13,8 @@ import co.edu.sena.models.entity.Proveedor;
 @Repository
 public interface PerfilRepository extends JpaRepository<Perfil, Integer> {
 
-	/*@Query("SELECT p FROM Perfil p WHERE p.email = :email")
-	Optional<Perfil> findByEmail(String email);
-	*/
+	@Query("SELECT p FROM Perfil p WHERE p.email = :email")
+	Optional<Perfil> encontrarCorreo(String email);
+	
 	Perfil findByEmail(String perfil);
 }
