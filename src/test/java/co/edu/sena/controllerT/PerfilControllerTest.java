@@ -17,9 +17,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import co.edu.sena.controller.PerfilController;
-import co.edu.sena.models.entity.Perfil;
-import co.edu.sena.models.service.PerfilService;
+import co.edu.sena.controller.PersonaController;
+import co.edu.sena.models.entity.Persona;
+import co.edu.sena.models.service.PersonaService;
 /*
 //La anotación @ExtendWith sirve para configurar la extensión de Mockito, lo que permite el uso de Mockito en las pruebas.
 @ExtendWith(MockitoExtension.class)
